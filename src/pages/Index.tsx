@@ -284,47 +284,59 @@ function HomePage({ onCatalog }: { onCatalog: () => void }) {
         </div>
       </section>
 
-      {/* WHY THIS SITE */}
+      {/* PAIN POINTS + PERSONAL */}
       <section className="px-6 pb-24">
-        <div className="max-w-4xl mx-auto">
-          <div
-            className="rounded-3xl p-10 md:p-12 relative overflow-hidden"
-            style={{ background: "linear-gradient(135deg, #fdf0f7, #f4f0fc)" }}
-          >
-            <div className="absolute top-0 right-0 text-8xl opacity-10 select-none" style={{ lineHeight: 1 }}>🎓</div>
-            <div className="max-w-xl relative">
-              <div className="text-xs font-semibold uppercase tracking-widest mb-4" style={{ color: "#c06fa0" }}>Зачем этот сайт?</div>
-              <h2 className="font-cormorant text-3xl md:text-4xl font-bold mb-5 leading-snug" style={{ color: "#3d2550" }}>
-                Когда гуглишь вузы — информация везде, а ясности ноль
-              </h2>
-              <div className="space-y-3 text-sm leading-relaxed" style={{ color: "#8a6a84" }}>
-                <p>Официальные сайты вузов перегружены. Рейтинги разбросаны по разным источникам. Советы взрослых — субъективны. А времени до подачи документов всё меньше.</p>
-                <p>Я создала этот сайт как <span style={{ color: "#3d2550", fontWeight: 600 }}>простой и честный каталог</span> — чтобы можно было быстро отфильтровать вузы по тому, что важно именно тебе: город, направление, рейтинг.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+        <div className="max-w-4xl mx-auto space-y-5">
 
-      {/* TOP PICKS */}
-      <section className="px-6 pb-24">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-end justify-between mb-8">
-            <div>
-              <h2 className="font-cormorant text-4xl font-bold mb-1" style={{ color: "#3d2550" }}>
-                Топ вузов <span className="text-gradient-rose italic">России</span>
-              </h2>
-              <p className="text-sm" style={{ color: "#9a7a8a" }}>Национальный рейтинг 2025</p>
-            </div>
-            <button onClick={onCatalog} className="text-sm font-medium pb-0.5" style={{ color: "#c06fa0", borderBottom: "1px solid rgba(192,111,160,0.4)" }}>
-              Все вузы →
-            </button>
+          {/* Pain header */}
+          <div className="text-center mb-10">
+            <div className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: "#c06fa0" }}>Почему это так сложно</div>
+            <h2 className="font-cormorant text-4xl md:text-5xl font-bold leading-tight" style={{ color: "#3d2550" }}>
+              Выбор вуза — это{" "}
+              <span className="text-gradient-rose italic">настоящий стресс</span>
+            </h2>
           </div>
+
+          {/* Pain cards row */}
           <div className="grid md:grid-cols-3 gap-4">
-            {UNIVERSITIES.slice(0, 6).map((u) => (
-              <UniversityCard key={u.id} u={u} />
+            {[
+              { emoji: "🌀", title: "Информации слишком много", text: "Сотни вузов, тысячи направлений, противоречивые рейтинги — и всё это нужно как-то переварить за несколько месяцев.", color: "#c06fa0", bg: "#fdf0f7" },
+              { emoji: "🗣️", title: "Все советуют разное", text: "Родители говорят одно, учителя — другое, друзья — третье. А ты посередине и не знаешь, чьему совету доверять.", color: "#9b8bc0", bg: "#f4f0fc" },
+              { emoji: "⏳", title: "Времени почти нет", text: "ЕГЭ, подготовка, последний год в школе. Найти момент чтобы спокойно изучить все варианты — почти нереально.", color: "#7b9fd4", bg: "#f0f4fd" },
+            ].map((card, i) => (
+              <div
+                key={i}
+                className="rounded-2xl p-6 transition-all duration-300"
+                style={{ background: card.bg, border: `1px solid ${card.color}18` }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = "translateY(-3px)"; (e.currentTarget as HTMLElement).style.boxShadow = `0 8px 28px ${card.color}22`; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}
+              >
+                <div className="text-3xl mb-3">{card.emoji}</div>
+                <div className="font-cormorant text-xl font-bold mb-2 leading-snug" style={{ color: "#3d2550" }}>{card.title}</div>
+                <p className="text-sm leading-relaxed" style={{ color: "#8a6a84" }}>{card.text}</p>
+              </div>
             ))}
           </div>
+
+          {/* Personal block */}
+          <div
+            className="rounded-3xl p-8 md:p-10 flex flex-col md:flex-row gap-8 items-center mt-2"
+            style={{ background: "linear-gradient(135deg, #fce8f3, #ede8fc)", border: "1px solid rgba(192,111,160,0.15)" }}
+          >
+            <div className="w-20 h-20 rounded-full flex items-center justify-center text-4xl shrink-0 self-start md:self-center" style={{ background: "linear-gradient(135deg, #f4a7c3, #c9b8e8)" }}>
+              🙋‍♀️
+            </div>
+            <div>
+              <div className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: "#c06fa0" }}>Немного обо мне</div>
+              <p className="text-base leading-relaxed mb-1" style={{ color: "#3d2550" }}>
+                <span style={{ fontWeight: 600 }}>Я сама в этой ситуации.</span> 11-й класс, впереди ЕГЭ и вопрос, который не даёт покоя — куда поступать?
+              </p>
+              <p className="text-sm leading-relaxed" style={{ color: "#8a6a84" }}>
+                Я устала от хаоса в интернете и решила сделать то, чего мне не хватало — простой сайт, где можно отфильтровать вузы по тому, что важно именно тебе. Без лишнего. Только нужное.
+              </p>
+            </div>
+          </div>
+
         </div>
       </section>
 
