@@ -8,9 +8,6 @@ interface University {
   name: string;
   short: string;
   city: string;
-  region: string;
-  rating: number;
-  nationalRank: number;
   students: number;
   directions: string[];
   tuition: number;
@@ -19,148 +16,96 @@ interface University {
   accentBg: string;
   emoji: string;
   tags: string[];
-  mood: string;
-}
-
-interface CatalogPageProps {
-  universities: University[];
-  search: string;
-  setSearch: (v: string) => void;
-  regionFilter: string;
-  setRegionFilter: (v: string) => void;
-  directionFilter: string;
-  setDirectionFilter: (v: string) => void;
-  ratingFilter: string;
-  setRatingFilter: (v: string) => void;
+  about: string;
 }
 
 const UNIVERSITIES: University[] = [
   {
-    id: 1, name: "МГУ им. М.В. Ломоносова", short: "МГУ",
-    city: "Москва", region: "Москва", rating: 9.8, nationalRank: 1,
-    students: 47000, directions: ["Технические", "Гуманитарные", "Естественные", "Медицинские"],
-    tuition: 280000, budget: true,
-    accent: "#c06fa0", accentBg: "#fdf0f7", emoji: "🏛️",
-    tags: ["Флагман", "Исследования"], mood: "Классика и престиж",
+    id: 1,
+    name: "Московский государственный строительный университет",
+    short: "МГСУ",
+    city: "Москва",
+    students: 15000,
+    directions: ["Строительство", "Архитектура", "Инженерия", "Экология"],
+    tuition: 245000,
+    budget: true,
+    accent: "#c06fa0", accentBg: "#fdf0f7", emoji: "🏗️",
+    tags: ["Строительство", "Москва", "Старейший"],
+    about: "Главный строительный университет страны. Готовит инженеров-строителей, проектировщиков и специалистов по строительным технологиям.",
   },
   {
-    id: 2, name: "МФТИ — Физтех", short: "МФТИ",
-    city: "Долгопрудный", region: "Москва", rating: 9.6, nationalRank: 2,
-    students: 6500, directions: ["Технические", "IT", "Физика"],
-    tuition: 350000, budget: true,
-    accent: "#7b9fd4", accentBg: "#f0f4fd", emoji: "⚡",
-    tags: ["IT", "Наука"], mood: "Для влюблённых в физику",
+    id: 2,
+    name: "Санкт-Петербургский государственный архитектурно-строительный университет",
+    short: "СПбГАСУ",
+    city: "Санкт-Петербург",
+    students: 8500,
+    directions: ["Архитектура", "Строительство", "Дизайн среды", "Геодезия"],
+    tuition: 210000,
+    budget: true,
+    accent: "#9b8bc0", accentBg: "#f4f0fc", emoji: "🏛️",
+    tags: ["Архитектура", "Петербург", "Дизайн"],
+    about: "Один из старейших технических вузов России. Сильная архитектурная школа с богатыми традициями петербургской архитектуры.",
   },
   {
-    id: 3, name: "НИУ Высшая школа экономики", short: "ВШЭ",
-    city: "Москва", region: "Москва", rating: 9.4, nationalRank: 3,
-    students: 40000, directions: ["Экономические", "Гуманитарные", "IT", "Юридические"],
-    tuition: 400000, budget: true,
-    accent: "#c09060", accentBg: "#fdf6ee", emoji: "📊",
-    tags: ["Бизнес", "Экономика"], mood: "Амбиции и карьера",
+    id: 3,
+    name: "Казанский государственный архитектурно-строительный университет",
+    short: "КГАСУ",
+    city: "Казань",
+    students: 7200,
+    directions: ["Архитектура", "Строительство", "Реставрация", "Транспорт"],
+    tuition: 155000,
+    budget: true,
+    accent: "#c09060", accentBg: "#fdf6ee", emoji: "🕌",
+    tags: ["Архитектура", "Казань", "Реставрация"],
+    about: "Ведущий архитектурно-строительный вуз Поволжья. Уникальные программы по реставрации объектов культурного наследия.",
   },
   {
-    id: 4, name: "МГТУ им. Баумана", short: "Бауманка",
-    city: "Москва", region: "Москва", rating: 9.2, nationalRank: 4,
-    students: 22000, directions: ["Технические", "IT", "Машиностроение"],
-    tuition: 230000, budget: true,
-    accent: "#7ab89a", accentBg: "#eef8f2", emoji: "🔧",
-    tags: ["Инженерия", "Технологии"], mood: "Создаёшь, а не говоришь",
+    id: 4,
+    name: "Ижевский государственный технический университет им. М.Т. Калашникова",
+    short: "ИжГТУ",
+    city: "Ижевск",
+    students: 10000,
+    directions: ["Строительство", "Машиностроение", "IT", "Экономика"],
+    tuition: 120000,
+    budget: true,
+    accent: "#7b9fd4", accentBg: "#f0f4fd", emoji: "⚙️",
+    tags: ["Технический", "Ижевск", "Доступность"],
+    about: "Многопрофильный технический университет с развитым строительным факультетом. Одна из самых доступных цен на обучение среди технических вузов.",
   },
   {
-    id: 5, name: "СПбГУ", short: "СПбГУ",
-    city: "Санкт-Петербург", region: "Санкт-Петербург", rating: 9.1, nationalRank: 5,
-    students: 30000, directions: ["Гуманитарные", "Юридические", "Естественные"],
-    tuition: 260000, budget: true,
-    accent: "#9b8bc0", accentBg: "#f4f0fc", emoji: "🌊",
-    tags: ["Классика", "Наука"], mood: "Атмосфера и глубина",
+    id: 5,
+    name: "Пензенский государственный университет архитектуры и строительства",
+    short: "ПГУАС",
+    city: "Пенза",
+    students: 5500,
+    directions: ["Архитектура", "Строительство", "Дизайн", "Землеустройство"],
+    tuition: 110000,
+    budget: true,
+    accent: "#7ab89a", accentBg: "#eef8f2", emoji: "🌿",
+    tags: ["Архитектура", "Пенза", "Небольшой"],
+    about: "Специализированный архитектурно-строительный вуз. Небольшой и уютный — преподаватели знают студентов в лицо.",
   },
   {
-    id: 6, name: "ИТМО", short: "ИТМО",
-    city: "Санкт-Петербург", region: "Санкт-Петербург", rating: 9.0, nationalRank: 6,
-    students: 16000, directions: ["IT", "Технические", "Фотоника"],
-    tuition: 300000, budget: true,
-    accent: "#6ab3c8", accentBg: "#eef7fb", emoji: "💡",
-    tags: ["IT", "Инновации"], mood: "Будущее строится здесь",
-  },
-  {
-    id: 7, name: "Уральский федеральный университет", short: "УрФУ",
-    city: "Екатеринбург", region: "Урал", rating: 8.5, nationalRank: 12,
-    students: 35000, directions: ["Технические", "Гуманитарные", "Экономические"],
-    tuition: 180000, budget: true,
-    accent: "#d4907a", accentBg: "#fdf2ee", emoji: "⛰️",
-    tags: ["Регионы", "Доступность"], mood: "Сила и характер Урала",
-  },
-  {
-    id: 8, name: "Новосибирский государственный университет", short: "НГУ",
-    city: "Новосибирск", region: "Сибирь", rating: 8.9, nationalRank: 8,
-    students: 8000, directions: ["Естественные", "Физика", "IT"],
-    tuition: 200000, budget: true,
-    accent: "#7ab89a", accentBg: "#eef8f2", emoji: "🔬",
-    tags: ["Наука", "Академгородок"], mood: "Настоящая наука в тайге",
-  },
-  {
-    id: 9, name: "Казанский федеральный университет", short: "КФУ",
-    city: "Казань", region: "Поволжье", rating: 8.3, nationalRank: 15,
-    students: 50000, directions: ["Гуманитарные", "Медицинские", "Технические"],
-    tuition: 160000, budget: true,
-    accent: "#c08080", accentBg: "#fdf0f0", emoji: "🕌",
-    tags: ["Многопрофильный"], mood: "Восток и Запад вместе",
-  },
-  {
-    id: 10, name: "Дальневосточный федеральный университет", short: "ДВФУ",
-    city: "Владивосток", region: "Дальний Восток", rating: 7.8, nationalRank: 22,
-    students: 20000, directions: ["Морские", "Технические", "Гуманитарные"],
-    tuition: 150000, budget: true,
-    accent: "#6ab3c8", accentBg: "#eef7fb", emoji: "🌏",
-    tags: ["АТР", "Уникальный"], mood: "Край земли, начало пути",
-  },
-  {
-    id: 11, name: "РАНХиГС", short: "РАНХиГС",
-    city: "Москва", region: "Москва", rating: 8.0, nationalRank: 18,
-    students: 57000, directions: ["Экономические", "Управление", "Юридические"],
-    tuition: 320000, budget: false,
-    accent: "#c09060", accentBg: "#fdf6ee", emoji: "🏛",
-    tags: ["Госуправление"], mood: "Для будущих руководителей",
-  },
-  {
-    id: 12, name: "Томский политехнический университет", short: "ТПУ",
-    city: "Томск", region: "Сибирь", rating: 8.6, nationalRank: 10,
-    students: 15000, directions: ["Технические", "Энергетика", "IT"],
-    tuition: 170000, budget: true,
-    accent: "#9b8bc0", accentBg: "#f4f0fc", emoji: "⚙️",
-    tags: ["Инженерия", "Сибирь"], mood: "Инженерное сердце Сибири",
+    id: 6,
+    name: "Московский архитектурный институт (Государственная академия)",
+    short: "МАрхИ",
+    city: "Москва",
+    students: 2800,
+    directions: ["Архитектура", "Дизайн среды", "Градостроительство", "Реставрация"],
+    tuition: 380000,
+    budget: true,
+    accent: "#d4907a", accentBg: "#fdf2ee", emoji: "✏️",
+    tags: ["Архитектура", "Элитный", "Творческий"],
+    about: "Самый престижный архитектурный вуз России. Маленький, конкурс огромный — поступают единицы. Зато диплом МАрхИ открывает любые двери.",
   },
 ];
-
-const REGIONS = ["Все", "Москва", "Санкт-Петербург", "Урал", "Сибирь", "Поволжье", "Дальний Восток"];
-const DIRECTIONS = ["Все", "IT", "Технические", "Гуманитарные", "Экономические", "Медицинские", "Естественные", "Юридические"];
-const RATINGS = ["Все", "9+", "8.5+", "8+"];
 
 
 export default function Index() {
   const [page, setPage] = useState<Page>("home");
-  const [search, setSearch] = useState("");
-  const [regionFilter, setRegionFilter] = useState("Все");
-  const [directionFilter, setDirectionFilter] = useState("Все");
-  const [ratingFilter, setRatingFilter] = useState("Все");
-
-  const filtered = UNIVERSITIES.filter((u) => {
-    const q = search.toLowerCase();
-    const matchSearch = u.name.toLowerCase().includes(q) || u.city.toLowerCase().includes(q) || u.short.toLowerCase().includes(q);
-    const matchRegion = regionFilter === "Все" || u.region === regionFilter;
-    const matchDir = directionFilter === "Все" || u.directions.includes(directionFilter);
-    const matchRating =
-      ratingFilter === "Все" ||
-      (ratingFilter === "9+" && u.rating >= 9) ||
-      (ratingFilter === "8.5+" && u.rating >= 8.5) ||
-      (ratingFilter === "8+" && u.rating >= 8);
-    return matchSearch && matchRegion && matchDir && matchRating;
-  });
 
   return (
     <div className="min-h-screen font-golos" style={{ background: "hsl(var(--background))" }}>
-      {/* NAV */}
       <nav
         className="sticky top-0 z-50"
         style={{
@@ -186,15 +131,7 @@ export default function Index() {
       </nav>
 
       {page === "home" && <HomePage onCatalog={() => setPage("catalog")} />}
-      {page === "catalog" && (
-        <CatalogPage
-          universities={filtered}
-          search={search} setSearch={setSearch}
-          regionFilter={regionFilter} setRegionFilter={setRegionFilter}
-          directionFilter={directionFilter} setDirectionFilter={setDirectionFilter}
-          ratingFilter={ratingFilter} setRatingFilter={setRatingFilter}
-        />
-      )}
+      {page === "catalog" && <CatalogPage />}
     </div>
   );
 }
@@ -375,78 +312,21 @@ function HomePage({ onCatalog }: { onCatalog: () => void }) {
   );
 }
 
-function CatalogPage({
-  universities, search, setSearch,
-  regionFilter, setRegionFilter,
-  directionFilter, setDirectionFilter,
-  ratingFilter, setRatingFilter,
-}: CatalogPageProps) {
+function CatalogPage() {
   return (
-    <div className="max-w-6xl mx-auto px-6 py-10">
-      <div className="mb-8">
+    <div className="max-w-5xl mx-auto px-6 py-10">
+      <div className="mb-10">
         <h1 className="font-cormorant text-5xl font-bold mb-2" style={{ color: "#3d2550" }}>
           Каталог <span className="text-gradient-rose italic">вузов</span>
         </h1>
         <p className="text-sm" style={{ color: "#9a7a8a" }}>
-          Найдено: <span className="font-semibold" style={{ color: "#3d2550" }}>{universities.length}</span> вузов
+          Архитектурные и строительные вузы, которые я рассматриваю для поступления
         </p>
       </div>
 
-      {/* Search */}
-      <div className="relative mb-6">
-        <Icon name="Search" size={17} className="absolute left-4 top-1/2 -translate-y-1/2" style={{ color: "#b89ab0" }} />
-        <input
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder="Найти по названию или городу..."
-          className="w-full pl-11 pr-4 py-3.5 rounded-2xl text-sm outline-none transition-all"
-          style={{ background: "rgba(255,255,255,0.85)", border: "1px solid rgba(210,180,225,0.4)", color: "#3d2550", caretColor: "#c06fa0" }}
-          onFocus={(e) => ((e.target as HTMLInputElement).style.borderColor = "rgba(192,111,160,0.6)")}
-          onBlur={(e) => ((e.target as HTMLInputElement).style.borderColor = "rgba(210,180,225,0.4)")}
-        />
-      </div>
-
-      {/* Filters */}
-      <div className="space-y-3 mb-8">
-        <FilterRow label="Регион" options={REGIONS} value={regionFilter} onChange={setRegionFilter} />
-        <FilterRow label="Направление" options={DIRECTIONS} value={directionFilter} onChange={setDirectionFilter} />
-        <FilterRow label="Рейтинг" options={RATINGS} value={ratingFilter} onChange={setRatingFilter} />
-      </div>
-
-      {universities.length === 0 ? (
-        <div className="text-center py-24" style={{ color: "#b89ab0" }}>
-          <div className="text-5xl mb-4">🔍</div>
-          <p className="text-base">Вузы не найдены — попробуй другие фильтры</p>
-        </div>
-      ) : (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {universities.map((u: University) => (
-            <UniversityCard key={u.id} u={u} />
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
-
-function FilterRow({ label, options, value, onChange }: { label: string; options: string[]; value: string; onChange: (v: string) => void }) {
-  return (
-    <div className="flex flex-wrap items-center gap-2">
-      <span className="text-xs w-20 shrink-0" style={{ color: "#b89ab0" }}>{label}:</span>
-      <div className="flex flex-wrap gap-2">
-        {options.map((opt) => (
-          <button
-            key={opt}
-            onClick={() => onChange(opt)}
-            className="px-3.5 py-1.5 rounded-full text-xs font-medium transition-all duration-200"
-            style={{
-              background: value === opt ? "rgba(192,111,160,0.15)" : "rgba(255,255,255,0.7)",
-              border: `1px solid ${value === opt ? "rgba(192,111,160,0.45)" : "rgba(210,180,225,0.4)"}`,
-              color: value === opt ? "#c06fa0" : "#9a7a94",
-            }}
-          >
-            {opt}
-          </button>
+      <div className="grid md:grid-cols-2 gap-5">
+        {UNIVERSITIES.map((u) => (
+          <UniversityCard key={u.id} u={u} />
         ))}
       </div>
     </div>
@@ -454,11 +334,9 @@ function FilterRow({ label, options, value, onChange }: { label: string; options
 }
 
 function UniversityCard({ u }: { u: University }) {
-  const ratingColor = u.rating >= 9.5 ? "#c06fa0" : u.rating >= 9 ? "#7b9fd4" : u.rating >= 8.5 ? "#7ab89a" : "#c09060";
-
   return (
     <div
-      className="rounded-2xl p-5 cursor-pointer transition-all duration-300 flex flex-col gap-3.5"
+      className="rounded-2xl p-6 transition-all duration-300 flex flex-col gap-4"
       style={{ background: "rgba(255,255,255,0.82)", backdropFilter: "blur(12px)", border: "1px solid rgba(210,180,225,0.3)" }}
       onMouseEnter={(e) => {
         (e.currentTarget as HTMLElement).style.border = `1px solid ${u.accent}45`;
@@ -472,64 +350,47 @@ function UniversityCard({ u }: { u: University }) {
       }}
     >
       {/* Header */}
-      <div className="flex items-start justify-between">
-        <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl shrink-0" style={{ background: u.accentBg }}>
-            {u.emoji}
-          </div>
-          <div>
-            <div className="font-cormorant font-bold text-lg leading-tight" style={{ color: "#3d2550" }}>{u.short}</div>
-            <div className="text-xs flex items-center gap-1 mt-0.5" style={{ color: "#b89ab0" }}>
-              <Icon name="MapPin" size={10} style={{ color: "#b89ab0" }} /> {u.city}
-            </div>
+      <div className="flex items-center gap-3">
+        <div className="w-13 h-13 w-12 h-12 rounded-2xl flex items-center justify-center text-2xl shrink-0" style={{ background: u.accentBg }}>
+          {u.emoji}
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="font-cormorant font-bold text-xl leading-tight" style={{ color: "#3d2550" }}>{u.short}</div>
+          <div className="text-xs flex items-center gap-1 mt-0.5" style={{ color: "#b89ab0" }}>
+            <Icon name="MapPin" size={10} style={{ color: "#b89ab0" }} /> {u.city}
           </div>
         </div>
-        <div className="text-right">
-          <div className="font-cormorant text-2xl font-bold leading-none" style={{ color: ratingColor }}>{u.rating}</div>
-          <div className="text-xs mt-0.5" style={{ color: "#b89ab0" }}>#{u.nationalRank} в РФ</div>
-        </div>
-      </div>
-
-      {/* Mood */}
-      <div className="text-xs italic leading-relaxed" style={{ color: u.accent }}>«{u.mood}»</div>
-
-      {/* Tags */}
-      <div className="flex flex-wrap gap-1.5">
-        {u.tags.map((t) => (
-          <span key={t} className="px-2.5 py-1 rounded-full text-xs font-medium" style={{ background: u.accentBg, color: u.accent }}>
-            {t}
-          </span>
-        ))}
         {u.budget && (
-          <span className="px-2.5 py-1 rounded-full text-xs font-medium" style={{ background: "#eef8f2", color: "#7ab89a" }}>
-            Бюджет
+          <span className="px-2.5 py-1 rounded-full text-xs font-medium shrink-0" style={{ background: "#eef8f2", color: "#7ab89a" }}>
+            Бюджет есть
           </span>
         )}
       </div>
 
-      {/* Stats row */}
-      <div className="flex items-center justify-between pt-2.5" style={{ borderTop: "1px solid rgba(210,180,225,0.25)" }}>
-        <div className="flex items-center gap-1 text-xs" style={{ color: "#b89ab0" }}>
-          <Icon name="Users" size={11} style={{ color: "#b89ab0" }} />
-          {(u.students / 1000).toFixed(0)}к студентов
-        </div>
-        <div className="text-xs font-semibold" style={{ color: u.accent }}>
-          от {(u.tuition / 1000).toFixed(0)}к ₽/год
-        </div>
-      </div>
+      {/* Full name */}
+      <div className="text-xs leading-relaxed" style={{ color: "#b89ab0" }}>{u.name}</div>
+
+      {/* About */}
+      <p className="text-sm leading-relaxed" style={{ color: "#6a4a64" }}>{u.about}</p>
 
       {/* Directions */}
-      <div className="flex flex-wrap gap-1">
-        {u.directions.slice(0, 3).map((d) => (
-          <span key={d} className="px-2.5 py-1 rounded-full text-xs" style={{ background: "rgba(240,235,248,0.7)", color: "#9a7a94" }}>
+      <div className="flex flex-wrap gap-1.5">
+        {u.directions.map((d) => (
+          <span key={d} className="px-2.5 py-1 rounded-full text-xs" style={{ background: u.accentBg, color: u.accent }}>
             {d}
           </span>
         ))}
-        {u.directions.length > 3 && (
-          <span className="px-2.5 py-1 rounded-full text-xs" style={{ background: "rgba(240,235,248,0.7)", color: "#b89ab0" }}>
-            +{u.directions.length - 3}
-          </span>
-        )}
+      </div>
+
+      {/* Footer */}
+      <div className="flex items-center justify-between pt-3" style={{ borderTop: "1px solid rgba(210,180,225,0.25)" }}>
+        <div className="flex items-center gap-1 text-xs" style={{ color: "#b89ab0" }}>
+          <Icon name="Users" size={11} style={{ color: "#b89ab0" }} />
+          ~{(u.students / 1000).toFixed(0)}к студентов
+        </div>
+        <div className="text-sm font-semibold" style={{ color: u.accent }}>
+          от {(u.tuition / 1000).toFixed(0)}к ₽/год
+        </div>
       </div>
     </div>
   );
